@@ -1,4 +1,4 @@
-def combiner(verbose, files=[]):
+def bro(verbose, files=[]):
 	import subprocess
 	import os
 	import time
