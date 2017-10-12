@@ -6,6 +6,7 @@ import textwrap
 import portslicer
 import fieldslicer
 import combiner
+import bro
 
 #Create the command-line capability
 parser = argparse.ArgumentParser(prog="Bro Log Utility Script", 
@@ -18,6 +19,7 @@ optional = parser.add_argument_group("Optional", description="These are optional
 mandatory.add_argument("-i", "--input", help="The path to the conn.log", metavar="")
 mandatory.add_argument("-p", "--ports", help="List of ports seperated by a comma", metavar="")
 mandatory.add_argument("-f", "--fields", help="List of fields seperated by a comma", metavar="")
+optional.add_argument("-b", "--bro", help="Takes in the file path of PCAPs and runs thems against Bro IDS", metavar="")
 optional.add_argument("-v", "--verbose", help="Outputs status to screen", action="store_true")
 optional.add_argument("-c", "--combine", help=textwrap.dedent('''\
 												Combine all files of a specified type into one.  Specify the path to where the 
@@ -42,6 +44,10 @@ def main():
 	elif args.combine > 0:
 		temp_files = subprocess.check_output(["find",args.combine[0],"-name",args.combine[-1]])
 		combiner.combiner(args.verbose, args.output, args.combine[-1].upper(),temp_files)
+	elif args.bro > 0:
+		temp_files = subprocess.check_output(["find",args.bro,"-name snort.log"])
+		bro.bro(args.verbose, args.bro)
+		
 
 if __name__ == "__main__":
     main()
