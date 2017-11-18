@@ -9,4 +9,4 @@ Update 0.1.1 - October 12, 2017
 Created Bro.py
 
 Update 0.1.2 - November 17,2017
-Updated Bro.py
+Updated Bro.py - Fixed a problem where the "combined_" file would get repeated over and over again.  Also fixed where if, for example, only one HTTP.log, it would be repeated over and over again in the "combined_http.log" instead of only copying it once.  This was done by deleting the logs that were dropped by Bro after they were created.
