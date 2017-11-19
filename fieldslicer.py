@@ -1,4 +1,5 @@
 def fieldslicer(connfile, verbose, fields=[]):
+	import progressbar
 	fields = fields.split(",")
 	connfile = open(connfile,"r").readlines()
 	outputfile = open("output.txt","a+")
@@ -19,7 +20,8 @@ def fieldslicer(connfile, verbose, fields=[]):
 			counter+=1
 			
 	elif verbose == False:
-		for line in connfile:
+		for idx,line in enumerate(connfile):
+			progessbar.progressbar(idx,len(connfile))
 			count = 0
 			tabseperated = line.split("\t")
 			for field in fields:
