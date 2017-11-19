@@ -1,4 +1,5 @@
 def portslicer(connfile, verbose, ports=[]):
+	import progressbar
 	ports = ports.split(",")
 	connfile = open(connfile,"r").readlines()
 	if verbose == True: #Perform slicing loudly
@@ -27,7 +28,8 @@ def portslicer(connfile, verbose, ports=[]):
 					pass
 
 	elif verbose == False: #perform slicing quietly 
-		for port in ports:
+		for idx, port in enumerate(ports):
+			progressbar.progressbar(idx,len(ports))
 			portfile = open(str(port)+".txt","a+")
 			portfile.write("Originating IP" + "\t" + "Originating Port" + "\t" + "Originating Bytes" + "\t" + "Responding IP" + "\t" + "Responding Port" + "\t" + "Responding Bytes" + "\t" + "Conn State" + "\n")
 			for line in connfile:
