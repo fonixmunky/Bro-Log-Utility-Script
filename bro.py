@@ -2,6 +2,7 @@ def bro(verbose, files=[]):
 	import subprocess
 	import os
 	import time
+	import progressbar
 	files = files.split("\n")
 	files.pop(-1)
 	
@@ -10,11 +11,13 @@ def bro(verbose, files=[]):
 		path = os.getcwd()
 		os.mkdir(path + "/" + str(epoch))
 		os.chdir(path + "/" + str(epoch))
-		for file in files:
-			subprocess.check_output(["bro","-r",file])
+		for idx,file in enumerate(files):
+			error = open("error.log",'a+')
+			progressbar.progressbar(idx, len(files), "Processing " + str(len(files)) + " PCAPs")
+			subprocess.call(["bro","-r",file],stderr=error)
 			newfiles = subprocess.check_output(["ls"]).split()
 			for newfile in newfiles:
-				if "combined_" not in newfile:	
+				if "combined_" not in newfile and "error.log" not in newfile:	
 					combinedfile = open("combined_" + str(newfile),"a+")
 					newfile = open(newfile,"r")
 					data = newfile.read()
