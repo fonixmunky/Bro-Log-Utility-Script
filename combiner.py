@@ -1,4 +1,5 @@
 def combiner(verbose, outfn, fn, files=[]):
+	import progressbar
 	files = files.split("\n")
 	files.pop(-1)
 	
@@ -7,7 +8,8 @@ def combiner(verbose, outfn, fn, files=[]):
 	else:
 		combined = open("combined" + fn,"w+")
 	if verbose == False:
-		for file in files:
+		for idx,file in enumerate(files):
+			progressbar.progressbar(idx,len(files), "Combining " + str(len(files)) + " files")
 			temp = open(file,"r").readlines()
 			for line in temp:
 				if line == "#":
