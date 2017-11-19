@@ -21,7 +21,7 @@ def fieldslicer(connfile, verbose, fields=[]):
 			
 	elif verbose == False:
 		for idx,line in enumerate(connfile):
-			progessbar.progressbar(idx,len(connfile))
+			progressbar.progressbar(idx,len(connfile))
 			count = 0
 			tabseperated = line.split("\t")
 			for field in fields:
