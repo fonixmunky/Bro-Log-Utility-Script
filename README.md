@@ -3,6 +3,9 @@
 This script will allow you to slice different types of Bro Logs for better data analysis.  Currently you can only combine multiple log files together into one file, slice a log based off of the fields, slice a conn.log based off of the port and run multiple PCAPs against the Bro IDS.
 
 ## Versioning
+Update 0.1.4 - December 5, 2017 <br />
+Added commments to code.
+
 Update 0.1.3 - November 18, 2017 <br />
 Created progressbar.py and updated all modules to call it.  This creates a progress bar for the non-verbose path of the modules.
 
