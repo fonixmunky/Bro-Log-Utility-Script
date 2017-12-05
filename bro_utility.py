@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+#Imports the different modules that the script uses
 import argparse
 import subprocess
 import textwrap
@@ -42,9 +43,11 @@ def main():
 	elif args.fields > 0:
 		fieldslicer.fieldslicer(args.input, args.verbose, args.fields)
 	elif args.combine > 0:
+		#runs the linux find command to find the files the user wants to combine
 		temp_files = subprocess.check_output(["find",args.combine[0],"-name",args.combine[-1]])
 		combiner.combiner(args.verbose, args.output, args.combine[-1].upper(),temp_files)
 	elif args.bro > 0:
+		#uses the linux find command to find the pcaps to run.
 		temp_files = subprocess.check_output(["find",args.bro,"-name snort.log"])
 		bro.bro(args.verbose, args.bro)
 		
