@@ -6,7 +6,12 @@ def bro(verbose, files=[]):
 	files = files.split("\n")
 	files.pop(-1)
 	
+	#checks whether the user wants to see the output of the script. 
+	#TODO get rid of verbose
 	if verbose == False:
+		'''Get the epoch time and the path and create a new directory
+		This is done in order to protect the files that bro creates
+		throughout the runtime of this script'''
 		epoch = time.time()
 		path = os.getcwd()
 		os.mkdir(path + "/" + str(epoch))
@@ -29,7 +34,8 @@ def bro(verbose, files=[]):
 					os.remove(path+"/"+str(epoch)+"/"+str(name))
 				else:
 					pass
-						   
+		
+		#Get rid of of the junk data
 		allcombined = subprocess.check_output(["ls"]).split()
 		for all in allcombined:
 			count = 1
