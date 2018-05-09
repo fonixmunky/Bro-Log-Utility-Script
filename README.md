@@ -6,6 +6,8 @@ This script will allow you to slice different types of Bro Logs for better data 
 Update 0.1.5 - May 9, 2018 <br />
 Moved modules into their own directory to clean up main directory.  Had to edit the bro_utility.py script in order to point to the new bin.* files.  Need to create/edit __init__.py so that the bro_utility.py script only has to call the bin directory as if it was a module itself.  More research needs to be done.
 
+Updated most files to be compatible with python 3.6.  Need to compile everything to make sure nothing is broken.
+
 Update 0.1.4 - December 5, 2017 <br />
 Added commments to code.
 
