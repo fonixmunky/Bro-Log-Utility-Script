@@ -22,11 +22,15 @@ def bro(verbose, files=[]):
 			subprocess.call(["bro","-r",file],stderr=error)
 			newfiles = subprocess.check_output(["ls"]).split()
 			for newfile in newfiles:
+				#Check if the file that is about to be open is the combined file or the error.log file
 				if "combined_" not in newfile and "error.log" not in newfile:	
+					#Open the combined_ file for the type of log.  Example if we were working on the conn.log
+					#then this will open the combined_conn.log
 					combinedfile = open("combined_" + str(newfile),"a+")
 					newfile = open(newfile,"r")
 					data = newfile.read()
 					combinedfile.write(data)
+					#To delete the newfile requires a little bit of finangling
 					name = str(newfile).split()
 					name = name[2].strip(",").strip("'")
 					combinedfile.close()
@@ -35,16 +39,18 @@ def bro(verbose, files=[]):
 				else:
 					pass
 		
-		#Get rid of of the junk data
+		#Get rid of of the junk data, each log has a lot of headers annotated by a #
 		allcombined = subprocess.check_output(["ls"]).split()
 		for all in allcombined:
 			count = 1
+			#In order to overwrite the data, first we open the file as readonly, then we open it as writeable
 			data = open(all,"r")
 			lines = data.readlines()
 			data.close()
 			data = open(all,"w")
 			for line in lines:
 				if "#" in line:
+					#This is to keep the actual headers for the columns
 					if count==7 or count==8:
 						data.write(line)
 						count+=1
@@ -102,3 +108,4 @@ def bro(verbose, files=[]):
 				else:
 					data.write(line)
 			filecount+=1
+
