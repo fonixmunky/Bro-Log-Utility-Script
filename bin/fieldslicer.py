@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def fieldslicer(connfile, verbose, fields=[]):
 	import progressbar
 	fields = fields.split(",")
