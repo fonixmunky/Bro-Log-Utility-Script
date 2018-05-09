@@ -4,10 +4,10 @@
 import argparse
 import subprocess
 import textwrap
-import portslicer
-import fieldslicer
-import combiner
-import bro
+import bin.portslicer as port
+import bin.fieldslicer as field
+import bin.combiner as combiner
+import bin.bro as bro
 
 #Create the command-line capability
 parser = argparse.ArgumentParser(prog="Bro Log Utility Script", 
@@ -39,9 +39,9 @@ args = parser.parse_args()
 
 def main():
 	if args.ports > 0:
-		portslicer.portslicer(args.input, args.verbose, args.ports)
+		port.portslicer(args.input, args.verbose, args.ports)
 	elif args.fields > 0:
-		fieldslicer.fieldslicer(args.input, args.verbose, args.fields)
+		field.fieldslicer(args.input, args.verbose, args.fields)
 	elif args.combine > 0:
 		#runs the linux find command to find the files the user wants to combine
 		temp_files = subprocess.check_output(["find",args.combine[0],"-name",args.combine[-1]])
