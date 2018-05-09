@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def portslicer(connfile, verbose, ports=[]):
 	import progressbar
 	ports = ports.split(",")
