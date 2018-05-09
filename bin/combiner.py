@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def combiner(verbose, outfn, fn, files=[]):
 	import progressbar
 	files = files.split("\n")
