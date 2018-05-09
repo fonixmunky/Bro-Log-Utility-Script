@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 def bro(verbose, files=[]):
 	import subprocess
 	import os
