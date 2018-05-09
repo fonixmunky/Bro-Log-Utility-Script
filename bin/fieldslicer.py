@@ -8,7 +8,7 @@ def fieldslicer(connfile, verbose, fields=[]):
 	if verbose == True:
 		counter = 1
 		for line in connfile:
-			print "Processing line " + str(counter) + " out of " + str(len(connfile))
+			print("Processing line " + str(counter) + " out of " + str(len(connfile)))
 			count = 0
 			tabseperated = line.split("\t")
 			for field in fields:
