@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-def fieldslicer(connfile, verbose, fields=[]):
+def fieldslicer(connfile, verbose, fields):
 	import progressbar
 	fields = fields.split(",")
 	connfile = open(connfile,"r").readlines()
