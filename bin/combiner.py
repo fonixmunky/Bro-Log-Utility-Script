@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-def combiner(verbose, outfn, fn, files=[]):
+def combiner(verbose, outfn, fn, files):
 	import progressbar
 	files = files.split("\n")
 	files.pop(-1)
@@ -23,7 +23,7 @@ def combiner(verbose, outfn, fn, files=[]):
 	elif verbose == True:
 		count = 1
 		for file in files:
-			print "Combining: " + str(count) + " out of " + str(len(files))
+			print("Combining: " + str(count) + " out of " + str(len(files)))
 			temp = open(file,"r").readlines()
 			for line in temp:
 				if line == "#":
